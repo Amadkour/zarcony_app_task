@@ -6,7 +6,7 @@ import 'package:zarcony_app_task/modules/cart/provider/model/cartModel.dart';
 import '../../../../core/widget/app_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../home/controller/home_controller.dart';
+import '../../../home/controller/address.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);

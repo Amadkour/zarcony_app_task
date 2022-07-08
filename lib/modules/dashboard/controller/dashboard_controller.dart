@@ -14,6 +14,6 @@ final dashboardController = StateProvider((ref) => PersistentTabController(
 ///-------------------listen data--------------///
 final dashboardControllerProvider =
     FutureProvider<List<BottomNavigatorModel>>((ref) async {
-  final repository = ref.read(repositoryProvider);
+  final repository = ref.watch(repositoryProvider);
   return repository.fetchItems();
 });

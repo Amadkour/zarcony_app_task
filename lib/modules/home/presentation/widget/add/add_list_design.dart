@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:zarcony_app_task/modules/home/provider/deal/model/deal_model.dart';
 import '../../../../../core/constant/color.dart';
-import '../../../controller/home_controller.dart';
+import '../../../controller/address.dart';
 import 'add_item_design.dart';
 
 class DealListWidget extends StatelessWidget {

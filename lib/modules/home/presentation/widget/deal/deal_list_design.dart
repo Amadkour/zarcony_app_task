@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:zarcony_app_task/modules/home/provider/deal/model/deal_model.dart';
 import '../../../../../core/constant/color.dart';
-import '../../../controller/home_controller.dart';
+import '../../../controller/address.dart';
 import 'deal_item_design.dart';
 
 class DealListWidget extends StatelessWidget {
@@ -12,7 +12,9 @@ class DealListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: Text(

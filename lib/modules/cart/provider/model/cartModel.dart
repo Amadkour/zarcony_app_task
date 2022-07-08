@@ -17,13 +17,13 @@ class CartModel {
 }
 
   CartModel.fromJson(dynamic json) {
-    _productName = json['product_name'];
-    _image = json['image'];
-    quantity = json['quantity'];
-    _price = json['price'];
-    _weight = json['weight'];
-    _maxQuantity = json['max_quantity'];
-    _minQuantity = json['min_quantity'];
+    _productName = json['product_name']??'';
+    _image = json['image']??'';
+    quantity = json['quantity']??'0';
+    _price = json['price']??'0';
+    _weight = json['weight']??'0';
+    _maxQuantity = json['max_quantity']??'30';
+    _minQuantity = json['min_quantity']??'1';
   }
   String? _productName;
   String? _image;

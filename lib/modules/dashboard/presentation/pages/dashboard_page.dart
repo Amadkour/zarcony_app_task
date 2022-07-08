@@ -22,61 +22,65 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer(
-      builder: (BuildContext context,
-          T Function<T>(ProviderBase<Object?, T>) watch, Widget? child) {
-        return context.read(dashboardControllerProvider).when(
-            data: (data) {
-              return CurvedNavBar(
-                actionButton: CurvedActionBar(
-                    onTab: (value) {
-                      context.read(dashboardControllerIndex).state = 2;
-                    },
-                    activeIcon: Container(
-                      padding: const EdgeInsets.all(7),
-                      height: 60,width: 60,
-                      decoration:  BoxDecoration(
-                          color: AppColors.primaryColor, shape: BoxShape.circle),
-                      child: const CartIconWidget(),
-                    ),
-                    text: ""),
-                activeColor:AppColors.primaryColor,
-                navBarBackgroundColor: Colors.white,
-                inActiveColor: Colors.black45,
-                appBarItems: List.generate(
-                    data.length,
-                    (index) => FABBottomAppBarItem(
-                        activeIcon: MyImage(
-                          url: 'assets/images/navbar/${data[index].title}.svg',
-                          height: 20,
-                          width: 20,
-                          color: AppColors.primaryColor,
-                          fit: BoxFit.fitHeight,
+    return Scaffold(
+      body: Center(
+        child: Consumer(
+          builder: (BuildContext context,
+              T Function<T>(ProviderBase<Object?, T>) watch, Widget? child) {
+            return watch(dashboardControllerProvider).when(
+                data: (data) {
+                  return CurvedNavBar(
+                    actionButton: CurvedActionBar(
+                        onTab: (value) {
+                          context.read(dashboardControllerIndex).state = 2;
+                        },
+                        activeIcon: Container(
+                          padding: const EdgeInsets.all(7),
+                          height: 60,width: 60,
+                          decoration:  BoxDecoration(
+                              color: AppColors.primaryColor, shape: BoxShape.circle),
+                          child: const CartIconWidget(),
                         ),
-                        inActiveIcon: MyImage(
-                          url: 'assets/images/navbar/${data[index].title}.svg',
-                          height: 20,
-                          width: 20,
-                          color: AppColors.darkGreyColor,
-                          fit: BoxFit.fitHeight,
-                        ),
-                        text: data[index].title)),
-                bodyItems: _buildScreens(),
-                actionBarView: const Text('Cart'),
-              );
-            },
-            loading: () => const CircularProgressIndicator(),
-            error: (i, e) => const Text('error'));
-      },
+                        text: ""),
+                    activeColor:AppColors.primaryColor,
+                    navBarBackgroundColor: Colors.white,
+                    inActiveColor: Colors.black45,
+                    appBarItems: List.generate(
+                        data.length,
+                        (index) => FABBottomAppBarItem(
+                            activeIcon: MyImage(
+                              url: 'assets/images/navbar/${data[index].title}.svg',
+                              height: 20,
+                              width: 20,
+                              color: AppColors.primaryColor,
+                              fit: BoxFit.fitHeight,
+                            ),
+                            inActiveIcon: MyImage(
+                              url: 'assets/images/navbar/${data[index].title}.svg',
+                              height: 20,
+                              width: 20,
+                              color: AppColors.darkGreyColor,
+                              fit: BoxFit.fitHeight,
+                            ),
+                            text: data[index].title)),
+                    bodyItems: _buildScreens(),
+                    actionBarView: const Text('Cart'),
+                  );
+                },
+                loading: () => const CircularProgressIndicator(),
+                error: (i, e) => const Text('error'));
+          },
+        ),
+      ),
     );
   }
 
   List<Widget> _buildScreens() {
     return  [
-      HomeScreen(),
-      Text('news'),
-      Text('favorite'),
-      CartScreen(),
+      const HomeScreen(),
+      const Text('news'),
+      const Text('favorite'),
+      const CartScreen(),
     ];
   }
 }

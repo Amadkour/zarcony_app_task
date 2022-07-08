@@ -6,11 +6,18 @@ import 'package:zarcony_app_task/modules/cart/presentation/widget/quantity_chang
 import 'package:zarcony_app_task/modules/cart/provider/model/cartModel.dart';
 
 class CartItemDesign extends StatelessWidget {
-  const CartItemDesign({Key? key, required this.cartModel, required this.imageBackgroundColor, this.onIncrease, this.onDecrease}) : super(key: key);
+  const CartItemDesign(
+      {Key? key,
+      required this.cartModel,
+      required this.imageBackgroundColor,
+      this.onIncrease,
+      this.onDecrease})
+      : super(key: key);
   final CartModel cartModel;
   final Color imageBackgroundColor;
   final void Function()? onIncrease;
   final void Function()? onDecrease;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +31,7 @@ class CartItemDesign extends StatelessWidget {
         children: [
           Flexible(
             child: Container(
-              margin: const EdgeInsets.only(left: 7,top: 7),
+              margin: const EdgeInsets.only(left: 7, top: 7),
               child: Row(
                 children: [
                   MyImage(
@@ -36,8 +43,8 @@ class CartItemDesign extends StatelessWidget {
                       height: 60,
                       width: 60,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: imageBackgroundColor,
+                        borderRadius: BorderRadius.circular(10),
+                        color: imageBackgroundColor,
                       ),
                     ),
                   ),
@@ -57,22 +64,20 @@ class CartItemDesign extends StatelessWidget {
                               height: 1.5,
                               fontWeight: FontWeight.bold),
                         ),
-                            Text(
-                              cartModel.weight!,
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: AppColors.darkGreyColor,
-                                  fontWeight: FontWeight.w500),
-                            ),
-
-
-                            Text(
-                              '\$${cartModel.price!}',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: AppColors.primaryColor,
-                                  fontWeight: FontWeight.w500),
-                            )
+                        Text(
+                          cartModel.weight!,
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: AppColors.darkGreyColor,
+                              fontWeight: FontWeight.w500),
+                        ),
+                        Text(
+                          '\$${cartModel.price!}',
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.w500),
+                        )
                       ],
                     ),
                   )
@@ -82,8 +87,11 @@ class CartItemDesign extends StatelessWidget {
           ),
           Row(
             children: [
-              QuantityChangeButtonDesign(onTap: onDecrease!, isIncreaseButton: false),
-
+              QuantityChangeButtonDesign(
+                onTap: onDecrease!,
+                isIncreaseButton: false,
+                cartModel: cartModel,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Text(
@@ -95,7 +103,11 @@ class CartItemDesign extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              QuantityChangeButtonDesign(onTap: onIncrease!, isIncreaseButton: true)
+              QuantityChangeButtonDesign(
+                onTap: onIncrease!,
+                isIncreaseButton: true,
+                cartModel: cartModel,
+              )
             ],
           )
         ],
