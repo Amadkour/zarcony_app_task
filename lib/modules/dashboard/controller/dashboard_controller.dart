@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import '../provider/model/bottom_navigator_model.dart';
-import '../provider/repo.dart';
+import '../provider/repo/repo.dart';
 
 ///----------------repo provider---------------///
 final repositoryProvider = Provider((ref) => BottomNavigatorRepo());

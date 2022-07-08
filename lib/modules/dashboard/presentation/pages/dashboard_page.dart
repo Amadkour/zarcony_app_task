@@ -1,14 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:zarcony_app_task/modules/cart/controller/cart_controller.dart';
 import '../../../../core/constant/color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/widget/my_image.dart';
+import '../../../cart/presentation/page/cart_screen.dart';
+import '../../../home/presentation/page/home_screen.dart';
 import '../../controller/dashboard_controller.dart';
 import 'package:curved_nav_bar/curved_bar/curved_action_bar.dart';
 import 'package:curved_nav_bar/fab_bar/fab_bottom_app_bar_item.dart';
 import 'package:curved_nav_bar/flutter_curved_bottom_nav_bar.dart';
+
+import '../widget/cart_icon_widget.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({
@@ -28,15 +33,11 @@ class DashboardPage extends StatelessWidget {
                       context.read(dashboardControllerIndex).state = 2;
                     },
                     activeIcon: Container(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(7),
+                      height: 60,width: 60,
                       decoration:  BoxDecoration(
                           color: AppColors.primaryColor, shape: BoxShape.circle),
-                      child: const MyImage(
-                        url: 'assets/images/navbar/center.svg',
-                        height: 20,
-                        width: 20,
-                        fit: BoxFit.fitHeight,
-                      ),
+                      child: const CartIconWidget(),
                     ),
                     text: ""),
                 activeColor:AppColors.primaryColor,
@@ -71,11 +72,11 @@ class DashboardPage extends StatelessWidget {
   }
 
   List<Widget> _buildScreens() {
-    return const [
-      Text('home'),
+    return  [
+      HomeScreen(),
       Text('news'),
       Text('favorite'),
-      Text('wallet'),
+      CartScreen(),
     ];
   }
 }

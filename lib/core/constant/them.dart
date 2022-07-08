@@ -5,7 +5,6 @@ import 'color.dart';
 
 ThemeData appTheme = ThemeData(
   primaryColor: AppColors.primaryColor,
-  accentColor: AppColors.secondary,
   scaffoldBackgroundColor: AppColors.whiteColor,
   backgroundColor: AppColors.whiteColor,
   pageTransitionsTheme: PageTransitionsTheme(
@@ -62,5 +61,5 @@ ThemeData appTheme = ThemeData(
           ),
         )
         .headline6,
-  ),
+  ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: AppColors.primaryColor),
 );

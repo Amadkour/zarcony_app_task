@@ -14,22 +14,22 @@ class FullScreenImage extends StatelessWidget {
     ModalRoute.of(context)!.settings.arguments as List;
 
     return Scaffold(
-      appBar:
-      MyAppBar(
-        title:routeArgs[3] ,
-        action:  IconButton(
-            onPressed: () {
-              GallerySaver.saveImage(routeArgs[0]).then((value) =>
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text('Image Saved Successfully'),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                  )));
-            },
-            icon: const Icon(
-              Icons.save_alt,
-              color: Colors.black,
-            )),
-      ),
+      // appBar:
+      // MyAppBar(
+      //   title:routeArgs[3] ,
+      //   action:  IconButton(
+      //       onPressed: () {
+      //         GallerySaver.saveImage(routeArgs[0]).then((value) =>
+      //             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      //               content: Text('Image Saved Successfully'),
+      //               clipBehavior: Clip.antiAliasWithSaveLayer,
+      //             )));
+      //       },
+      //       icon: const Icon(
+      //         Icons.save_alt,
+      //         color: Colors.black,
+      //       )),
+      // ),
       body: Center(
         child: MyImage(
           url: routeArgs[0],

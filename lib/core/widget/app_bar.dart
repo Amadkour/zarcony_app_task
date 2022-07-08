@@ -1,37 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:zarcony_app_task/core/widget/address_widget.dart';
+import 'package:zarcony_app_task/core/widget/my_image.dart';
 
 import '../constant/color.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-    MyAppBar(
-      {Key? key, required this.title, this.hasBackButton = true, this.action})
-      : preferredSize = const Size.fromHeight(kToolbarHeight);
-
-  final String title;
-  final bool hasBackButton;
-  final Widget? action;
+  const MyAppBar() : preferredSize = const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
-      elevation: 0.2,
-      automaticallyImplyLeading: true,
-      leading: hasBackButton
-          ? BackButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              color: AppColors.blackColor,
-            )
-          : null,
-      actions: action != null ? [action!] : [],
-      title: Text(
-        title,),
-      systemOverlayStyle: SystemUiOverlayStyle.dark,
-    );
+        backgroundColor:AppColors.whiteColor ,
+        automaticallyImplyLeading: false,
+        leadingWidth: 0,
+        elevation: 0,
+        title: Row(
+      mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: const [
+          AddressWidget(),
+          MyImage(url: '',width: 60,height: 60,)
+        ],),);
   }
 
   @override

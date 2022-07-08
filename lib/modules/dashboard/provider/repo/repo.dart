@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'model/bottom_navigator_model.dart';
+import '../model/bottom_navigator_model.dart';
 
 class BottomNavigatorRepo {
   final List<BottomNavigatorModel> _items = [];

@@ -1,20 +1,62 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:zarcony_app_task/modules/home/controller/home_controller.dart';
+import 'package:zarcony_app_task/modules/home/presentation/widget/deal/deal_list_design.dart';
+import 'package:zarcony_app_task/modules/home/provider/deal/repo/mock_deal_repo.dart';
 import '../../../../core/widget/app_bar.dart';
+import '../../provider/deal/model/deal_model.dart';
+import '../widget/add/slider.dart';
+import '../widget/address/address_list_design.dart';
+import '../widget/category/category_list_design.dart';
+import '../widget/search_widget.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   build(BuildContext context) {
     return Scaffold(
+        appBar: const MyAppBar(),
+        body: Consumer(builder: (BuildContext context,
+            T Function<T>(ProviderBase<Object?, T>) watch, Widget? child) {
+          return Column(
+            children: [
+              const SearchWidget(),
+              watch(addressControllerProvider).when(
+                  data: (data) => AddressListWidget(
+                        addresses: data,
+                      ),
+                  loading: () => const CircularProgressIndicator(),
+                  error: (i, e) => const Text('data')),
+              watch(categoryControllerProvider).when(
+                  data: ( data) => CategoryListWidget(
+                        categories: data,
+                      ),
+                  loading: () => const CircularProgressIndicator(),
+                  error: (i, e) => const Text('data')),
+              watch(dealNotifierProvider).when(
+                  data: (List<DealModel>data) => DealListWidget(
+                      deals: data,
+                      onTap: (int index) {
+                        if(data[index].isFavorite==false) {
+                          context.read(dealNotifierProvider.notifier).state=AsyncData(data..[index].isFavorite=true);
+                        }else{
+                            context.read(dealNotifierProvider.notifier).state=AsyncData(data..[index].isFavorite=false);
+                        }
+                      }),
+                  loading: () => const CircularProgressIndicator(),
+                  error: (i, e) => const Text('data')),
+              watch(addControllerProvider).when(
+                  data: (data) => SliderWidget(
+          news:data ,
+                    isSlider: true,
+           ),
+                  loading: () => const CircularProgressIndicator(),
+                  error: (i, e) => const Text('data')),
 
-      appBar:
-      MyAppBar(
-        title:'Populars' ,
-        hasBackButton: false,
-      ),
-      body: Text(''),
-    );
+            ],
+          );
+        }));
   }
 }
